@@ -1,0 +1,27 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Autonomous Google Form Filler</title>
+</head>
+<body>
+    <h2>🤖 Enter Google Form URL</h2>
+    <form method="POST">
+        <input type="text" name="form_url" placeholder="Paste Google Form URL" value="{{ form_url or '' }}" required>
+        <button type="submit">Get Fields</button><br><br>
+
+        {% if labels %}
+            <h3>📝 Fill Your Details:</h3>
+            {% for label in labels %}
+                <label>{{ label }}</label><br>
+                <input type="text" name="{{ label }}" required><br><br>
+            {% endfor %}
+            <button type="submit" name="fill">Fill Form</button>
+        {% endif %}
+
+        {% if filled %}
+            <p>✅ Form filled in browser. Review and submit manually!</p>
+        {% endif %}
+    </form>
+</body>
+</html>
